@@ -15,11 +15,11 @@ function sendMessage($chatid, $text)
     $get = file_get_contents($url);
 }
  
-// if($message == "/start")
-// {
-//     sendMessage($chatid, "Iniciado");
-// }
+if($message == "/start")
+{
+    sendMessage($chatid, "Iniciado");
+}
 
-sendMessage($chatid, $text);
+//sendMessage($chatid, $text);
  
 ?>
