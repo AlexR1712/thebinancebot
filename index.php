@@ -1,14 +1,4 @@
-<?php /* Template Name: Telegram */
-
-<html>
-<body>
-
-<h1>My First Heading</h1>
-
-<p>My first paragraph.</p>
-
-</body>
-</html>
+<?php
  
 $api = "bot542182830:AAEFUyXJeGUEiHGeu_SCs2Ej_IGC8olbgH4";
  
@@ -17,6 +7,7 @@ $update = json_decode($input, true);
  
 $message = $update['message']['text'];
 $chatid = $update['message']['chat']['id'];
+$name = $update['message']['from']['first_name'];
  
 function sendMessage($chatid, $text)
 {
@@ -27,7 +18,10 @@ function sendMessage($chatid, $text)
  
 if($message == "/start")
 {
-    sendMessage($chatid, "Iniciado");
+    sendMessage($chatid, "Hola ".$name);
+}
+else ($message == "/start") {
+	sendMessage($chatid, "Por ahora este bot solo saluda, estamos trabajando en tumbar al gobierno, por favor tenga paciencia.");
 }
  
 ?>
