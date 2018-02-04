@@ -35,9 +35,10 @@ elseif ($message == "/coins") {
 	sendMessage($chatid, $coins);
 }
 elseif (substr($message, 0, 6) == '/alarm') {
-
-	$message = trim($message, " ");
-	sendMessage($chatid, $message);
+	$message = str_word_count($message, 1, "0123456789");
+	$coin = $message[1];
+	$seted_price = $message[2];
+	sendMessage($chatid, "Tu token es: $coin y la alarma esta fijada cuando alcance el valor de $seted_price");
 
 }
 else{
