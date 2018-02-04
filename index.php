@@ -18,15 +18,15 @@ function sendMessage($chatid, $text)
     $get = file_get_contents($url);
 }
 
-// $price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
-// if ($price <= 10000) {
-// 	$sendMessage($chatid, "bajo el btc");
-// }
+$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
+if ($price <= 10000) {
+	$sendMessage(149273661, "bajo el btc");
+}
 
  
 if(strtolower($message) == "/start")
 {
-	sendMessage($chatid, $chatid);
+	//sendMessage($chatid, $chatid);
     sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token  correspondiente al precio de la moneda que quieres conocer, por ejemplo /BTCUSDT
 
 Si quieres conocer todas los tokens disponibles usa el comando /coins");
