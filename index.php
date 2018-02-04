@@ -37,11 +37,13 @@ elseif ($message == "/coins") {
 }
 elseif ($message == '/alarm') {
 	sendMessage($chatid, "Indique el token");
-	$input = file_get_contents("php://input");
-	$update = json_decode($input, true);
-	$message = $update['message']['text'];
-	$chatid = $update['message']['chat']['id'];
-	$name = $update['message']['from']['first_name'];
+	while (true) {
+		if ($message != '/alarm') {
+			sendMessage($chatid, $message);
+			break;
+		}
+	}
+	
 	sendMessage($chatid, $message);
 
 }
