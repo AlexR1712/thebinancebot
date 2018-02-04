@@ -23,12 +23,10 @@ if($message == "/start")
 {
     sendMessage($chatid, "Hola ".$name." Para usar el bot simplemente coloca el token que quieras conocer el precio, por ejemplo /BTCUSDT");
 }
-elseif ($message == "/btc" or $message == "/BTC") {
-	
-	sendMessage($chatid, json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT"), true)['price']);
-}
 else{
-
+	$coin = $message;
+	$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
+echo $price, "\n";
 	sendMessage($chatid, "Por ahora solo saludo, estoy ocupado tumbando al gobierno");
 }
 
