@@ -25,6 +25,7 @@ if($message == "/start")
 }
 else{
 	$coin = $message;
+	$str = ltrim($coin, '/');
 	$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
 echo $price, "\n";
 	sendMessage($chatid, "Por ahora solo saludo, estoy ocupado tumbando al gobierno");
