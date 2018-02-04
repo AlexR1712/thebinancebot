@@ -34,9 +34,9 @@ elseif ($message == "/coins") {
 	}
 	sendMessage($chatid, $coins);
 }
-elseif ($message == '/alarm') {
-	
-	sendMessage($chatid, "Indique el token");
+elseif (substr($message, 0, 5); == '/alarm') {
+
+	sendMessage($chatid, $message);
 
 }
 else{
