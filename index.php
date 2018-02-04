@@ -19,8 +19,9 @@ function sendMessage($chatid, $text)
 }
 
 if (true) {
-	$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT"), true)['price'];
-	$sendMessage(149273661, $price);
+	$coin = "BTCUSDT";
+	$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
+	sendMessage($chatid, $price);
 }
 
  
