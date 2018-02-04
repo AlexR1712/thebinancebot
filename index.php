@@ -20,8 +20,5 @@ if($message == "/start")
 {
     sendMessage($chatid, "Hola ".$name);
 }
-else ($message == "/start") {
-	sendMessage($chatid, "Por ahora este bot solo saluda, estamos trabajando en tumbar al gobierno, por favor tenga paciencia.");
-}
  
 ?>
