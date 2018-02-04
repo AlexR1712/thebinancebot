@@ -17,12 +17,19 @@ function sendMessage($chatid, $text)
     $url = "https://api.telegram.org/$api/sendMessage?chat_id=".$chatid."&text=".urlencode($text);
     $get = file_get_contents($url);
 }
+
+// $price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
+// if ($price <= 10000) {
+// 	$sendMessage($chatid, "bajo el btc");
+// }
+
  
 if(strtolower($message) == "/start")
 {
     sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token  correspondiente al precio de la moneda que quieres conocer, por ejemplo /BTCUSDT
 
 Si quieres conocer todas los tokens disponibles usa el comando /coins");
+    $sendMessage($chatid, $chatid);
 }
 elseif (strtolower($message) == "/coins") {
 	$Binance = json_decode(file_get_contents("https://api.binance.com//api/v1/exchangeInfo"), true);
