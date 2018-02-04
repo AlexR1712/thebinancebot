@@ -35,10 +35,15 @@ elseif (strtolower($message) == "/coins") {
 	sendMessage($chatid, $coins);
 }
 elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
-	$message = str_word_count($message, 1, "0123456789.");
-	$coin = strtoupper("/".$message[1]);
-	$seted_price = floatval($message[2]);
-	sendMessage($chatid, "Tu token es: $coin y la alarma esta fijada cuando alcance el valor de $seted_price");
+	if (sizeof($message) == 3 ) {
+		$message = str_word_count($message, 1, "0123456789.");
+		$coin = strtoupper("/".$message[1]);
+		$seted_price = floatval($message[2]);
+		sendMessage($chatid, "Tu token es: $coin y la alarma esta fijada cuando alcance el valor de $seted_price");
+	}
+	else{
+		sendMessage($chatid, "Error. Siga el ejemplo: /alarm BTCUSDT 12345");	
+	}
 
 }
 else{
