@@ -20,5 +20,8 @@ if($message == "/start")
 {
     sendMessage($chatid, "Hola ".$name);
 }
+else{
+	sendMessage($chatid, "Por ahora solo saludo, estoy ocupado tumbando al gobierno")
+}
  
 ?>
