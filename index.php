@@ -21,7 +21,7 @@ function sendMessage($chatid, $text)
  
 if($message == "/start")
 {
-    sendMessage($chatid, "Hola ".$name." Para usar el bot simplemente coloca el token que quieras conocer el precio, por ejemplo /BTCUSDT
+    sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token que quieras conocer el precio, por ejemplo /BTCUSDT
 Si quieres conocer todas los tokens disponibles usa el comando /coins");
 }
 elseif ($message == "/coins") {
