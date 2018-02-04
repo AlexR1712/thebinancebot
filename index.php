@@ -24,12 +24,11 @@ if($message == "/start")
     sendMessage($chatid, "Hola ".$name);
 }
 elseif ($message == "/btc" or $message == "/BTC") {
-	//$BINANCE_BTCUSDT = file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT");
-	//$BINANCE_BTCUSDT = json_decode($BINANCE_BTCUSDT, true);
-	//$BTC = round($BINANCE_BTCUSDT['price']);
-	sendMessage($chatid, json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT"), true)['price']);
+	
+	sendMessage($chatid, round(json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT"), true)['price']));
 }
 else{
+
 	sendMessage($chatid, "Por ahora solo saludo, estoy ocupado tumbando al gobierno");
 }
 
