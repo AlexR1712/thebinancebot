@@ -26,7 +26,7 @@ if ($price <= 10000) {
  
 if(strtolower($message) == "/start")
 {
-	//sendMessage($chatid, $chatid);
+	sendMessage($chatid, $chatid);
     sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token  correspondiente al precio de la moneda que quieres conocer, por ejemplo /BTCUSDT
 
 Si quieres conocer todas los tokens disponibles usa el comando /coins");
