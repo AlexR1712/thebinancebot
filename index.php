@@ -26,11 +26,11 @@ Si quieres conocer todas los tokens disponibles usa el comando /coins");
 }
 elseif ($message == "/coins") {
 	$Binance = json_decode(file_get_contents("https://api.binance.com//api/v1/exchangeInfo"), true);
-	$coins = "";
+	$coins = "/";
 	for ($i= 0; $i <= sizeof($Binance['symbols']) ; $i++) { 
 		$coin = $Binance['symbols'][$i]['symbol'];
-		$coins = $coins."
-/".$coin;
+		$coins = $coin."
+/".$coins;
 	}
 	sendMessage($chatid, $coins);
 }
