@@ -4,7 +4,6 @@ $api = "bot411509742:AAF0EfG_R-0mp3nL_KRTanuwDF79MiY2FRs";
  
 $input = file_get_contents("php://input");
 $update = json_decode($input, true);
- 
 $message = $update['message']['text'];
 $chatid = $update['message']['chat']['id'];
 $name = $update['message']['from']['first_name'];
@@ -38,6 +37,10 @@ elseif ($message == "/coins") {
 elseif ($message == '/alarm') {
 	sendMessage($chatid, "Indique el token");
 	while (true) {
+		$input = file_get_contents("php://input");
+		$update = json_decode($input, true);
+		$message = $update['message']['text'];
+		$chatid = $update['message']['chat']['id'];
 		if ($message != '/alarm') {
 			sendMessage($chatid, $message);
 			break;
