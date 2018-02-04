@@ -29,7 +29,7 @@ elseif ($message == "/coins") {
 	$coins = "";
 	for ($i= 0; $i < sizeof($Binance['symbols']) ; $i++) { 
 		$coin = $Binance['symbols'][$i]['symbol'];
-		$coins = $coins."\n/".$coin;
+		$coins = $coins."\n""/".$coin;
 	}
 	sendMessage($chatid, $coins);
 }
