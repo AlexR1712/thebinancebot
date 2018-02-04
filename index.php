@@ -18,7 +18,7 @@ function sendMessage($chatid, $text)
     $get = file_get_contents($url);
 }
 
-$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
+$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT"), true)['price'];
 if ($price <= 10000) {
 	$sendMessage("149273661", "bajo el btc");
 }
