@@ -36,7 +36,7 @@ elseif ($message == "/coins") {
 }
 elseif (substr($message, 0, 6) == '/alarm') {
 
-	$message = trim($message);
+	$message = trim($message, " ");
 	sendMessage($chatid, $message);
 
 }
