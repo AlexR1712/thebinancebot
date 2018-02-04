@@ -1,6 +1,6 @@
 <?php
  
-$api = "bot542182830:AAEFUyXJeGUEiHGeu_SCs2Ej_IGC8olbgH4";
+$api = "bot411509742:AAF0EfG_R-0mp3nL_KRTanuwDF79MiY2FRs";
  
 $input = file_get_contents("php://input");
 $update = json_decode($input, true);
@@ -21,7 +21,7 @@ function sendMessage($chatid, $text)
  
 if($message == "/start")
 {
-    sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token que quieras conocer el precio, por ejemplo /BTCUSDT
+    sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token  correspondiente al precio de la moneda que quieres conocer, por ejemplo /BTCUSDT
 Si quieres conocer todas los tokens disponibles usa el comando /coins");
 }
 elseif ($message == "/coins") {
