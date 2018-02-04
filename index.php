@@ -30,7 +30,7 @@ elseif ($message == "/coins") {
 	for ($i= 0; $i <= sizeof($Binance['symbols']) ; $i++) { 
 		$coin = $Binance['symbols'][$i]['symbol'];
 		$coins = $coins."
-"."/".$coins;
+/".$coins;
 	}
 	sendMessage($chatid, $coins);
 }
