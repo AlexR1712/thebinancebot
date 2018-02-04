@@ -36,7 +36,7 @@ elseif ($message == "/coins") {
 	sendMessage($chatid, $coins);
 }
 else{
-	$coin = $message;
+	$coin = strtoupper($message);
 	$coin = ltrim($coin, '/');
 	$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
 	sendMessage($chatid, $price);
