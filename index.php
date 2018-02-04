@@ -26,10 +26,11 @@ function sendMessage($chatid, $text)
  
 if(strtolower($message) == "/start")
 {
+	sendMessage($chatid, $chatid);
     sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token  correspondiente al precio de la moneda que quieres conocer, por ejemplo /BTCUSDT
 
 Si quieres conocer todas los tokens disponibles usa el comando /coins");
-    $sendMessage($chatid, $chatid);
+
 }
 elseif (strtolower($message) == "/coins") {
 	$Binance = json_decode(file_get_contents("https://api.binance.com//api/v1/exchangeInfo"), true);
