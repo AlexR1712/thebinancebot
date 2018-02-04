@@ -27,7 +27,7 @@ elseif ($message == "/btc" or $message == "/BTC") {
 	$BINANCE_BTCUSDT = file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT");
 	$BINANCE_BTCUSDT = json_decode($BINANCE_BTCUSDT, true);
 	$BTC = round($BINANCE_BTCUSDT['price']);
-	sendMessage($chatid, $BTC);
+	sendMessage($chatid, $BINANCE_BTCUSDT);
 }
 else{
 	sendMessage($chatid, "Por ahora solo saludo, estoy ocupado tumbando al gobierno");
