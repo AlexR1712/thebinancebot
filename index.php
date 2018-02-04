@@ -21,7 +21,7 @@ function sendMessage($chatid, $text)
 if (true) {
 	// $coin = "BTCUSDT";
 	// $price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
-	sendMessage(149273661, "Bitcoin es el futuro");
+	sendMessage(149273661, $name." ".$message);
 }
 
  
