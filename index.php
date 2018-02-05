@@ -65,9 +65,9 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 		}
 		else{
 		$alarm[0] = array (
-	    'coin' => 'BTCUSDT', 
-	    'seted_price' => '10000', 
-	    'chatid' => '149273661');
+	    'coin' => $coin, 
+	    'seted_price' => $seted_price, 
+	    'chatid' => $chatid);
 		$handle = fopen('alarmas.json', 'w');
 		file_put_contents('alarmas.json',  json_encode($alarm));
 		fclose($handle);
