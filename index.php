@@ -14,7 +14,7 @@ function sendMessage($chatid, $text)
     $get = file_get_contents($url);
 }
 
-if (false) {
+if (true) {
 	//sendMessage(149273661, $name." ".$message);
 	if (file_exists('users.json')) {
 		$handle = fopen('users.json', 'r');
