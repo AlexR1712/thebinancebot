@@ -19,7 +19,7 @@ while (true) {
 			$chatid = $alarmas[$i]['chatid'];
 			$seted_price = $alarmas[$i]['seted_price'];
 			$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
-			if ($seted_price >= $price) {
+			if ($price >= $seted_price) {
 				sendMessage($chatid, $coin." ha superado el valor de ".$seted_price);
 				//unset($alarmas[$i]);
 				array_splice($alarmas, $i, 1);
