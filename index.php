@@ -14,7 +14,7 @@ function sendMessage($chatid, $text)
     $get = file_get_contents($url);
 }
 
-if (true) {
+if (false) {
 	//sendMessage(149273661, $name." ".$message);
 	for ($i=0; $i < sizeof($update['result']) ; $i++) { 
 	$name = $update['result'][$i]['message']['from']['first_name'];
