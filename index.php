@@ -26,9 +26,9 @@ if (false) {
 if(strtolower($message) == "/start")
 {
 	//sendMessage($chatid, $chatid);
-    sendMessage($chatid, "Hola ".$name.", para usar el bot simplemente coloca el token  correspondiente al precio de la moneda que quieres conocer, por ejemplo /BTCUSDT
+    sendMessage($chatid, "Hello ".$name.", to use the bot just type the token you want to know the price, for example: /BTCUSDT
 
-Si quieres conocer todas los tokens disponibles usa el comando /coins");
+If you want to know all token listed in Binance.com just type /coins");
 
 }
 elseif (strtolower($message) == "/coins") {
@@ -69,10 +69,10 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 		file_put_contents('alarmas.json',  json_encode($alarm));
 		fclose($handle);
 		}
-		sendMessage($chatid, "Tu token es: $coin y la alarma esta fijada cuando alcance el valor de $seted_price");
+		sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");
 	}
 	else{
-		sendMessage($chatid, "Error. Siga el ejemplo: /alarm BTCUSDT 12345");	
+		sendMessage($chatid, "Error. Follow the example: /alarm BTCUSDT 9150");	
 	}
 
 }
