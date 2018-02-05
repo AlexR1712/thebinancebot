@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 
 $api = "bot411509742:AAF0EfG_R-0mp3nL_KRTanuwDF79MiY2FRs";
