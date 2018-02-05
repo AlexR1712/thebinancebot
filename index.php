@@ -7,10 +7,6 @@ $update = json_decode($input, true);
 $message = $update['message']['text'];
 $chatid = $update['message']['chat']['id'];
 $name = $update['message']['from']['first_name'];
-// $BINANCE_BTCUSDT = file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT");
-// $BINANCE_BTCUSDT = json_decode($BINANCE_BTCUSDT, true);
-// $BTC = round($BINANCE_BTCUSDT['price']);
- 
 function sendMessage($chatid, $text)
 {
     global $api;
@@ -18,8 +14,12 @@ function sendMessage($chatid, $text)
     $get = file_get_contents($url);
 }
 
-if (false) {
-	sendMessage(149273661, $name." ".$message);
+if (true) {
+	//sendMessage(149273661, $name." ".$message);
+	for ($i=0; $i < sizeof($update['result']) ; $i++) { 
+	$name = $update['result'][$i]['message']['from']['first_name'];
+	sendMessage(149273661, $name);
+	}
 }
 
  
