@@ -31,6 +31,9 @@ if(strtolower($message) == "/start")
 If you want to know all token listed in Binance.com just type /coins");
 
 }
+elseif (strtolower($message) == "/help") {
+	sendMessage($chatid, "You are retarded, please don't use this Bot");
+}
 elseif (strtolower($message) == "/coins") {
 	$Binance = json_decode(file_get_contents("https://api.binance.com//api/v1/exchangeInfo"), true);
 	$coins = "";
