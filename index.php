@@ -15,17 +15,13 @@ function sendMessage($chatid, $text)
 }
 
 if (true) {
-	sendMessage(149273661, $name." ".$message);
-	$user = array (
-	    'name' => $name,
-	    'chatid' => $chatid);
+	//sendMessage(149273661, $name." ".$message);
 	if (file_exists('users.json')) {
-		$handle = fopen('users.json', 'r');
-		$my_arr = json_decode(file_get_contents('users.json'), true);
-		fclose($handle);
-		$handle = fopen('users.json', 'w');
-		$my_arr[] = $user;
-		file_put_contents('users.json',  json_encode($my_arr));
+		$user = ",{\"name\":\"$name\",\"chatid\":\"$chatid\"}]";
+		$handle = fopen('users.json', 'a');
+		$stat = fstat($handle);
+		ftruncate($handle, $stat['size']-1);
+		fwrite($handle, $user);
 		fclose($handle);
 		}
 	else{
