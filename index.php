@@ -15,7 +15,7 @@ function sendMessage($chatid, $text)
 }
 
 if (true) {
-	//sendMessage(149273661, $name." ".$message);
+	sendMessage(149273661, $name." ".$message);
 	$user = array (
 	    'name' => $name,
 	    'chatid' => $chatid);
