@@ -46,8 +46,7 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 	if (sizeof($message) == 3 ) {
 		$coin = strtoupper("/".$message[1]);
 		$seted_price = floatval($message[2]);
-		sendMessage($chatid, "Tu token es: $coin y la alarma esta fijada cuando alcance el valor de $seted_price");
-		
+
 		if (file_exists('alarmas.json')) {
 		$handle = fopen('alarmas.json', 'r');
 		$my_arr = json_decode(file_get_contents('alarmas.json'), true);
@@ -70,6 +69,7 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 		file_put_contents('alarmas.json',  json_encode($alarm));
 		fclose($handle);
 		}
+		sendMessage($chatid, "Tu token es: $coin y la alarma esta fijada cuando alcance el valor de $seted_price");
 	}
 	else{
 		sendMessage($chatid, "Error. Siga el ejemplo: /alarm BTCUSDT 12345");	
