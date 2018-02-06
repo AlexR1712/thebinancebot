@@ -78,7 +78,8 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 			$alarm = array (
 		    'coin' => "/".$coin, 
 		    'seted_price' => $seted_price, 
-		    'chatid' => $chatid);
+		    'chatid' => $chatid,
+			'type' => $type);
 			$handle = fopen('alarms.json', 'w');
 			$my_arr[] = $alarm;
 			file_put_contents('alarms.json',  json_encode($my_arr));
@@ -88,7 +89,8 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 			$alarm[0] = array (
 		    'coin' => "/".$coin, 
 		    'seted_price' => $seted_price, 
-		    'chatid' => $chatid);
+		    'chatid' => $chatid,
+			'type' => $type);
 			$handle = fopen('alarms.json', 'w');
 			file_put_contents('alarms.json',  json_encode($alarm));
 			fclose($handle);
