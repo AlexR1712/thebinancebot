@@ -60,7 +60,9 @@ elseif (strtolower($message) == "/coins") {
 elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 	$message = str_word_count($message, 1, "0123456789.");
 	if (sizeof($message) == 3 ) {
-		$coin = strtoupper("/".$message[1]);
+		//$coin = strtoupper("/".$message[1]);
+		$coin = strtoupper($message[1]);
+		//$coin = substr($alarmas[$i]['coin'], 1, 10);
 		$seted_price = floatval($message[2]);
 		$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
 		if ($seted_price > $price) {
