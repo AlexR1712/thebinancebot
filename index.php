@@ -15,7 +15,7 @@ function sendMessage($chatid, $text)
 }
 
 if (true) {
-	sendMessage(149273661, $name." ".$message);
+	//sendMessage(149273661, $name." ".$message);
 	if (file_exists('users.json')) {
 		$user = ",{\"name\":\"$name\",\"chatid\":\"$chatid\"}]";
 		$handle = fopen('users.json', 'a');
@@ -27,7 +27,7 @@ if (true) {
 	else{
 		$users[0] = array (
 	    'name' => $name,
-	    'chatid' => $chatid);
+	    'chatid' => (string)$chatid);
 		$handle = fopen('users.json', 'w');
 		file_put_contents('users.json',  json_encode($users));
 		fclose($handle);
