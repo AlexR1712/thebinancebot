@@ -66,17 +66,22 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 		$seted_price = floatval($message[2]);
 		$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
 		if ($seted_price > $price) {
-			if (file_exists('alarmas.json')) {
-			$handle = fopen('alarmas.json', 'r');
-			$my_arr = json_decode(file_get_contents('alarmas.json'), true);
+			$type = "high";
+		}
+		else{
+			$type = "low";
+		}
+		if (file_exists('alarms.json')) {
+			$handle = fopen('alarms.json', 'r');
+			$my_arr = json_decode(file_get_contents('alarms.json'), true);
 			fclose($handle);
 			$alarm = array (
 		    'coin' => "/".$coin, 
 		    'seted_price' => $seted_price, 
 		    'chatid' => $chatid);
-			$handle = fopen('alarmas.json', 'w');
+			$handle = fopen('alarms.json', 'w');
 			$my_arr[] = $alarm;
-			file_put_contents('alarmas.json',  json_encode($my_arr));
+			file_put_contents('alarms.json',  json_encode($my_arr));
 			fclose($handle);
 			}
 			else{
@@ -84,15 +89,11 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 		    'coin' => "/".$coin, 
 		    'seted_price' => $seted_price, 
 		    'chatid' => $chatid);
-			$handle = fopen('alarmas.json', 'w');
-			file_put_contents('alarmas.json',  json_encode($alarm));
+			$handle = fopen('alarms.json', 'w');
+			file_put_contents('alarms.json',  json_encode($alarm));
 			fclose($handle);
 			}
-		sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");
-		}
-		else{
-			sendMessage($chatid, "Seted price must be higher than current price: ".$price);	
-		}
+		sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");	
 	}
 	else{
 		sendMessage($chatid, "Error. Follow the example: /alarm BTCUSDT 9150");	
