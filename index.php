@@ -71,7 +71,7 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 			$my_arr = json_decode(file_get_contents('alarmas.json'), true);
 			fclose($handle);
 			$alarm = array (
-		    'coin' => $coin, 
+		    'coin' => "/".$coin, 
 		    'seted_price' => $seted_price, 
 		    'chatid' => $chatid);
 			$handle = fopen('alarmas.json', 'w');
@@ -81,7 +81,7 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 			}
 			else{
 			$alarm[0] = array (
-		    'coin' => $coin, 
+		    'coin' => "/".$coin, 
 		    'seted_price' => $seted_price, 
 		    'chatid' => $chatid);
 			$handle = fopen('alarmas.json', 'w');
