@@ -63,8 +63,6 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 		$coin = strtoupper("/".$message[1]);
 		$seted_price = floatval($message[2]);
 		$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
-		sendMessage($chatid, $price."
-			".$seted_price);
 		if ($seted_price > $price) {
 			if (file_exists('alarmas.json')) {
 			$handle = fopen('alarmas.json', 'r');
