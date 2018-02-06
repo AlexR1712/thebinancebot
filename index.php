@@ -86,11 +86,11 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 			file_put_contents('alarmas.json',  json_encode($alarm));
 			fclose($handle);
 			}
+		sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");
 		}
 		else{
-			sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");
+			sendMessage($chatid, "Seted price must be higher than current price: ".$price);	
 		}
-	sendMessage($chatid, "Seted price must be higher than current price: ".$price);
 	}
 	else{
 		sendMessage($chatid, "Error. Follow the example: /alarm BTCUSDT 9150");	
