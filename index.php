@@ -62,30 +62,35 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 	if (sizeof($message) == 3 ) {
 		$coin = strtoupper("/".$message[1]);
 		$seted_price = floatval($message[2]);
-
-		if (file_exists('alarmas.json')) {
-		$handle = fopen('alarmas.json', 'r');
-		$my_arr = json_decode(file_get_contents('alarmas.json'), true);
-		fclose($handle);
-		$alarm = array (
-	    'coin' => $coin, 
-	    'seted_price' => $seted_price, 
-	    'chatid' => $chatid);
-		$handle = fopen('alarmas.json', 'w');
-		$my_arr[] = $alarm;
-		file_put_contents('alarmas.json',  json_encode($my_arr));
-		fclose($handle);
+		$price = $price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
+		if ($seted_price > $price) {
+			if (file_exists('alarmas.json')) {
+			$handle = fopen('alarmas.json', 'r');
+			$my_arr = json_decode(file_get_contents('alarmas.json'), true);
+			fclose($handle);
+			$alarm = array (
+		    'coin' => $coin, 
+		    'seted_price' => $seted_price, 
+		    'chatid' => $chatid);
+			$handle = fopen('alarmas.json', 'w');
+			$my_arr[] = $alarm;
+			file_put_contents('alarmas.json',  json_encode($my_arr));
+			fclose($handle);
+			}
+			else{
+			$alarm[0] = array (
+		    'coin' => $coin, 
+		    'seted_price' => $seted_price, 
+		    'chatid' => $chatid);
+			$handle = fopen('alarmas.json', 'w');
+			file_put_contents('alarmas.json',  json_encode($alarm));
+			fclose($handle);
+			}
 		}
 		else{
-		$alarm[0] = array (
-	    'coin' => $coin, 
-	    'seted_price' => $seted_price, 
-	    'chatid' => $chatid);
-		$handle = fopen('alarmas.json', 'w');
-		file_put_contents('alarmas.json',  json_encode($alarm));
-		fclose($handle);
+			sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");
 		}
-		sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");
+	sendMessage($chatid, "Seted price must be higher than current price: ".$price);
 	}
 	else{
 		sendMessage($chatid, "Error. Follow the example: /alarm BTCUSDT 9150");	
@@ -96,7 +101,8 @@ else{
 	$coin = strtoupper($message);
 	$coin = ltrim($coin, '/');
 	$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
-	sendMessage($chatid, "/".$coin." ".$price);
+	$message = "/".$coin." ".$price;
+	sendMessage($chatid, $message);
 }
 
 ?>
