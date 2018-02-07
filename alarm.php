@@ -19,8 +19,8 @@ while (true) {
 			$type = $alarmas[$i]['type'];
 			$seted_price = $alarmas[$i]['seted_price'];
 			$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
-			// $seted_price = floatval($seted_price);
-			// $price = floatval($price);
+			$seted_price = floatval($seted_price);
+			$price = floatval($price);
 			if ($price >= $seted_price and $type = "high") {
 				sendMessage($chatid, $coin." just reached the price of ".$seted_price);
 				array_splice($alarmas, $i, 1);
@@ -39,40 +39,5 @@ while (true) {
 	}
 	sleep(20);
 }
-
-
-
-
-
-
-
-
-// if (file_exists('alarmas.json')) {
-// 	$handle = fopen('alarmas.json', 'r');
-// 	$alarmas = json_decode(file_get_contents('alarmas.json'), true);
-// 	fclose($handle);
-// 	$alarm = array (
-//     'coin' => 'BTCUSDT', 
-//     'price' => '9100', 
-//     'chatid' => '12345'
-// 	);
-// 	$handle = fopen('alarmas.json', 'w');
-// 	$alarmas[] = $alarm;
-// 	file_put_contents('alarmas.json',  json_encode($alarmas));
-// 	fclose($handle);
-// }
-// else{
-// 	echo "No existe el archivo\n";
-// 	$coin = 'BTCUSDT';
-// 	$price = '9000';
-// 	$chatid = '123456';
-// 	$alarm[0] = array (
-//     'coin' => $coin, 
-//     'price' => $price, 
-//     'chatid' => $chatid);
-// 	$handle = fopen('alarmas.json', 'w');
-// 	file_put_contents('alarmas.json',  json_encode($alarm));
-// 	fclose($handle);
-// }
 
 ?>
