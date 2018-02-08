@@ -6,7 +6,9 @@ $input = file_get_contents("php://input");
 $update = json_decode($input, true);
 $message = $update['message']['text'];
 $chatid = $update['message']['chat']['id'];
-$name = $update['message']['from']['first_name'];
+$first_name = $update['message']['from']['first_name'];
+$last_name = $update['message']['from']['last_name'];
+$username = $update['message']['from']['username'];
 function sendMessage($chatid, $text)
 {
     global $api;
@@ -15,30 +17,19 @@ function sendMessage($chatid, $text)
 }
 
 if (true) {
-	//sendMessage(149273661, $name." ".$message);
-	if (file_exists('users.json')) {
-		$user = ",{\"name\":\"$name\",\"chatid\":\"$chatid\"}]";
-		$handle = fopen('users.json', 'a');
-		$stat = fstat($handle);
-		ftruncate($handle, $stat['size']-1);
-		fwrite($handle, $user);
-		fclose($handle);
-		}
-	else{
-		$users[0] = array (
-	    'name' => $name,
-	    'chatid' => (string)$chatid);
-		$handle = fopen('users.json', 'w');
-		file_put_contents('users.json',  json_encode($users));
-		fclose($handle);
+	$link = mysqli_connect('85.10.205.173:3307', 'thebinancebot', 'xavier123');
+	mysqli_select_db($link, 'thebinancebot');
+	$result = mysqli_query($link, "SELECT chatid FROM users WHERE chatid = '$chatid'");
+	if (mysqli_num_rows($result) == 0){
+		mysqli_query($link, "INSERT INTO users (chatid, first_name, last_name, username) VALUES ('$chatid', '$first_name', '$last_name', '$username')");
 	}
-	
+	mysqli_close($link);
 }
 
  
 if(strtolower($message) == "/start")
 {
-    sendMessage($chatid, "Hello ".$name.", to use the bot just type the token you want to know the price, for example: /BTCUSDT
+    sendMessage($chatid, "Hello ".$first_name.", to use the bot just type the token you want to know the price, for example: /BTCUSDT
 
 If you want to know all token listed in Binance.com just type /coins");
 
