@@ -59,30 +59,10 @@ elseif (strtolower(substr($message, 0, 6)) == '/alarm') {
 		else{
 			$type = "low";
 		}
-		if (file_exists('alarms.json')) {
-			$handle = fopen('alarms.json', 'r');
-			$my_arr = json_decode(file_get_contents('alarms.json'), true);
-			fclose($handle);
-			$alarm = array (
-		    'coin' => "/".$coin, 
-		    'seted_price' => $seted_price, 
-		    'chatid' => $chatid,
-			'type' => $type);
-			$handle = fopen('alarms.json', 'w');
-			$my_arr[] = $alarm;
-			file_put_contents('alarms.json',  json_encode($my_arr));
-			fclose($handle);
-			}
-			else{
-			$alarm[0] = array (
-		    'coin' => "/".$coin, 
-		    'seted_price' => $seted_price, 
-		    'chatid' => $chatid,
-			'type' => $type);
-			$handle = fopen('alarms.json', 'w');
-			file_put_contents('alarms.json',  json_encode($alarm));
-			fclose($handle);
-			}
+		$link = mysqli_connect('85.10.205.173:3307', 'thebinancebot', 'xavier123');
+		mysqli_select_db($link, 'thebinancebot');
+		mysqli_query($link, "INSERT INTO alarms (chatid, coin, seted_price, type) VALUES ('$chatid', '$coin', '$seted_price', '$type')");
+		mysqli_close($link);
 		sendMessage($chatid, "You will receive a notification when $coin reaches $seted_price");	
 	}
 	else{
