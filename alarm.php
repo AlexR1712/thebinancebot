@@ -7,35 +7,32 @@ function sendMessage($chatid, $text)
     $url = "https://api.telegram.org/$api/sendMessage?chat_id=".$chatid."&text=".urlencode($text);
     $get = file_get_contents($url);
 }
+$link = mysqli_connect('85.10.205.173:3307', 'thebinancebot', 'xavier123');
+mysqli_select_db($link, 'thebinancebot');
 
 while (true) {
-	if (file_exists('alarmas.json')) {
-		$handle = fopen('alarmas.json', 'r');
-		$alarmas = json_decode(file_get_contents('alarmas.json'), true);
+	$coin = 'BTCUSDT'
+	$chatid = '149273661';
+	$type = 'low';
+	$seted_price = '7783';
+	$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
+	$seted_price = floatval($seted_price);
+	$price = floatval($price);
+	
+	$result = mysqli_query($link, "SELECT chatid FROM users");
+	while ($row = $result->fetch_assoc()){
+	    foreach($row as $value) echo "$value"."\n";
+	}
 
-		for ($i=0; $i < sizeof($alarmas); $i++) { 
-			$coin = substr($alarmas[$i]['coin'], 1, 10);
-			$chatid = $alarmas[$i]['chatid'];
-			$type = $alarmas[$i]['type'];
-			$seted_price = $alarmas[$i]['seted_price'];
-			$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
-			$seted_price = floatval($seted_price);
-			$price = floatval($price);
-			if ($price >= $seted_price and $type == "high") {
-				sendMessage($chatid, $coin." just reached the price of ".$seted_price);
-				array_splice($alarmas, $i, 1);
-				$handle = fopen('alarmas.json', 'w');
-				file_put_contents('alarmas.json',  json_encode($alarmas));
-				fclose($handle);
-			}
-			elseif ($price <= $seted_price and $type == "low") {
-				sendMessage($chatid, $coin." just reached the price of ".$seted_price);
-				array_splice($alarmas, $i, 1);
-				$handle = fopen('alarmas.json', 'w');
-				file_put_contents('alarmas.json',  json_encode($alarmas));
-				fclose($handle);
-			}
-		}
+
+		
+	if ($price >= $seted_price and $type == "high") {
+		sendMessage($chatid, $coin." just reached the price of ".$seted_price);
+		
+	}
+	elseif ($price <= $seted_price and $type == "low") {
+		sendMessage($chatid, $coin." just reached the price of ".$seted_price);
+		
 	}
 	sleep(20);
 }
