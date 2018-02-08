@@ -21,14 +21,14 @@ while (true) {
 			$price = json_decode(file_get_contents("https://api.binance.com/api/v1/ticker/price?symbol=$coin"), true)['price'];
 			$seted_price = floatval($seted_price);
 			$price = floatval($price);
-			if ($price >= $seted_price and $type = "high") {
+			if ($price >= $seted_price and $type == "high") {
 				sendMessage($chatid, $coin." just reached the price of ".$seted_price);
 				array_splice($alarmas, $i, 1);
 				$handle = fopen('alarmas.json', 'w');
 				file_put_contents('alarmas.json',  json_encode($alarmas));
 				fclose($handle);
 			}
-			elseif ($price <= $seted_price and $type = "low") {
+			elseif ($price <= $seted_price and $type == "low") {
 				sendMessage($chatid, $coin." just reached the price of ".$seted_price);
 				array_splice($alarmas, $i, 1);
 				$handle = fopen('alarmas.json', 'w');
